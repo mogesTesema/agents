@@ -76,9 +76,12 @@ tools = [{"type": "function", "function": record_user_details_json},
 class Me:
 
     def __init__(self):
-        self.openai = OpenAI()
-        self.name = "Ed Donner"
-        reader = PdfReader("me/linkedin.pdf")
+        self.openai = OpenAI(
+            base_url=os.getenv("GITHUB_OPENAI_BASE_URL"),
+            api_key=os.getenv("OPENAI_API_KEY")
+        )
+        self.name = "Moges Tesema"
+        reader = PdfReader("me/Moges_Tesema_V5.pdf")
         self.linkedin = ""
         for page in reader.pages:
             text = page.extract_text()
